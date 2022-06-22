@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -27,6 +28,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.Html;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -148,12 +150,10 @@ public class AddEventActivity extends AppCompatActivity {
 
                             mountainsRef.putFile(image_uri);
 
+                            String imageString = BitMapToString(bitmap);
 
-                            ByteArrayOutputStream baos = new ByteArrayOutputStream(8192);
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-                            String compressedImageString = new ByteArrayOutputStream(8192).toByteArray().toString();
 
-                            Event event = new Event(id, eventName, location.getLatitude(), location.getLongitude(), p, null, eventNotes, LocalDateTime.now(), eventAddress, compressedImageString);
+                            Event event = new Event(id, eventName, location.getLatitude(), location.getLongitude(), p, null, eventNotes, LocalDateTime.now(), eventAddress, imageString);
 
                             reference.child(id).setValue(event);
                             reference.orderByChild(id).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -310,10 +310,19 @@ public class AddEventActivity extends AppCompatActivity {
 
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image_uri);
+                bitmap = rotateImage(bitmap, 90);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,2, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
     }
 
     public static String generateRandomString() {
@@ -351,6 +360,13 @@ public class AddEventActivity extends AppCompatActivity {
         else {
             return locationNet;
         }
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
     }
 }
 

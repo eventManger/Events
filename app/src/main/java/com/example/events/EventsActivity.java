@@ -149,12 +149,9 @@ public class EventsActivity extends AppCompatActivity {
                         }catch(Exception e){
 
                         }
+                        Bitmap image = StringToBitMap(compressedImageString);
 
-                        byte [] encodeByte= Base64.decode(compressedImageString,Base64.DEFAULT);
-                        InputStream inputStream  = new ByteArrayInputStream(encodeByte);
-                        Bitmap bitmap  = BitmapFactory.decodeStream(inputStream);
-
-                        Event event = new Event(id, name, targetLocation==null?null:targetLocation.getLatitude(), targetLocation==null?null:targetLocation.getLongitude(), addedBy, bitmap, note, ldt, address, compressedImageString);
+                        Event event = new Event(id, name, targetLocation==null?null:targetLocation.getLatitude(), targetLocation==null?null:targetLocation.getLongitude(), addedBy, image, note, ldt, address, compressedImageString);
 
                         //DOdaje każdy obiekt event z bazy danych do listy eventList
                         eventList.add(event);
@@ -294,5 +291,16 @@ public class EventsActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Do nothing
             }
+    }
+
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 }

@@ -27,6 +27,7 @@ import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.Html;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -115,13 +116,14 @@ public class EventEditActivity extends AppCompatActivity {
         imageView = findViewById(R.id.EditImageView);
         takePicture = findViewById(R.id.editImageButton);
 
+        //Baza plików dla events
         rootNode = FirebaseDatabase.getInstance("https://authproject-b0bfc-default-rtdb.europe-west1.firebasedatabase.app");
         reference = rootNode.getReference("events");
-
         Query query = reference.orderByChild("id").equalTo(eventId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //Jeśli istnieje event o danym ID
                 if (dataSnapshot.exists()) {
                     try {
                         final File localFile = File.createTempFile("image", "jpg");
@@ -130,7 +132,7 @@ public class EventEditActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                                 event = EventsActivity.getEventFromDatabaseObject(dataSnapshot.child(eventId).getValue(), getApplicationContext());
-                                //event.setImage(BitmapFactory.decodeFile(localFile.getAbsolutePath()));
+                                event.setImage(BitmapFactory.decodeFile(localFile.getAbsolutePath()));
 
                                 //Uzupełniam pola danymi z obiektu Event
                                 nameView.setText(event.getName());
@@ -159,10 +161,10 @@ public class EventEditActivity extends AppCompatActivity {
 
                                 imageView.setImageBitmap(event.getImage());
 
-                                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                                BitmapFactory.decodeFile(localFile.getAbsolutePath()).compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                                String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), BitmapFactory.decodeFile(localFile.getAbsolutePath()), "Title", null);
-                                image_uri = Uri.parse(path);
+//                                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//                                BitmapFactory.decodeFile(localFile.getAbsolutePath()).compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+//                                String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), BitmapFactory.decodeFile(localFile.getAbsolutePath()), "Title", null);
+//                                image_uri = Uri.parse(path);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -216,7 +218,7 @@ public class EventEditActivity extends AppCompatActivity {
                             storage = FirebaseStorage.getInstance();
                             StorageReference imageDatabase = storage.getReference();
 
-                            //Nowy wpis w bazie plików o nazwie takiej jak ID zdarzenia
+                            //Aktualizacja wpisu o nazwie takiej jak ID zdarzenia
                             StorageReference objectReference = imageDatabase.child(id);
                             StorageReference mountainImagesRef = imageDatabase.child(image_uri.getPath());
 
@@ -224,16 +226,23 @@ public class EventEditActivity extends AppCompatActivity {
                             objectReference.putFile(image_uri);
 
                             //Kompresja pliku
+//                            Bitmap bitmap = null;
+//                            String compressedImageString = "";
+//                            try {
+//                                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), image_uri);
+//                                ByteArrayOutputStream baos = new ByteArrayOutputStream(8192);
+//                                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+//                                compressedImageString = new ByteArrayOutputStream(8192).toByteArray().toString();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
                             Bitmap bitmap = null;
-                            String compressedImageString = "";
                             try {
                                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), image_uri);
-                                ByteArrayOutputStream baos = new ByteArrayOutputStream(8192);
-                                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-                                compressedImageString = new ByteArrayOutputStream(8192).toByteArray().toString();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            String imageString = BitMapToString(bitmap);
 
 
                             //Stwórz obiekt event aby zaktualizować go w bazie po ID
@@ -246,7 +255,7 @@ public class EventEditActivity extends AppCompatActivity {
                                     eventNotes,
                                     LocalDateTime.now(),
                                     eventAddress,
-                                    compressedImageString
+                                    imageString
                             );
 
                             reference.child(id).setValue(event);
@@ -410,5 +419,13 @@ public class EventEditActivity extends AppCompatActivity {
         else {
             return locationNet;
         }
+    }
+
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
     }
 }

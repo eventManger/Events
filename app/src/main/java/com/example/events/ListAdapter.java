@@ -47,9 +47,10 @@ public class ListAdapter extends ArrayAdapter<Event> {
             
             ImageView imageView = (ImageView) v.findViewById(R.id.imageDetails1);
             if(p.getImage() == null) {
-
+                System.out.println("Brak zdjecia :(");
             }
             else{
+                System.out.println("ZDjecie jest w tej postaci: " + p.getImage());
                 imageView.
                         setImageBitmap(
                                 p.

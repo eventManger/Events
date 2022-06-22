@@ -41,10 +41,11 @@
 
             <ImageView
                 android:id="@+id/imageDetails"
-                android:layout_width="379dp"
-                android:layout_height="274dp"
-                android:layout_marginStart="16dp"
-                android:scaleType="centerCrop"
+                android:layout_width="298dp"
+                android:layout_height="361dp"
+                android:layout_marginLeft="55dp"
+                android:layout_centerHorizontal="true"
+
                 android:src="@drawable/ic_image" />
 
             <androidx.constraintlayout.widget.ConstraintLayout

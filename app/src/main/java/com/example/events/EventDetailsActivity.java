@@ -147,6 +147,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    bitmap = AddEventActivity.rotateImage(bitmap, 90);
                     imageView.setImageBitmap(bitmap);
                 }
             }).addOnFailureListener(new OnFailureListener() {
