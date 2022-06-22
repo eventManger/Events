@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FormularzRejestracyjny">
+
+    <EditText
+        android:id="@+id/input_password1"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_corners"
+        android:paddingLeft="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_email" />
+
+    <EditText
+        android:id="@+id/input_password_2"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_corners"
+        android:paddingLeft="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:hint="Repeat password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_password1" />
+
+    <EditText
+        android:id="@+id/input_first_name"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/ic_user"
+        android:background="@drawable/rounded_corners"
+        android:paddingLeft="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:hint="First name"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/input_last_name"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_corners"
+        android:paddingLeft="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:hint="Last name"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_first_name" />
+
+    <EditText
+        android:id="@+id/input_email"
+        android:drawableLeft="@drawable/ic_mail"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rounded_corners"
+        android:paddingLeft="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:hint="Email address"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_last_name" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="52dp"
+        android:background="@drawable/rounded_corners"
+        android:text="Rejestracja"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

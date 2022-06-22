@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:layout_height="wrap_content"
+    tools:context=".AddEventActivity">
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nazwa zdarzenia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editLocationButton"
+        android:text="Pobierz lokalizację"
+        />
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/editAddress"/>
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/editCountry"/>
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/editLocality"/>
+
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notes"
+        android:layout_weight="1"
+        android:id="@+id/editNotes"/>
+
+    <ImageView
+        android:layout_width="360dp"
+        android:layout_height="260dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_image"
+        android:id="@+id/EditImageView"/>
+
+    <Button
+        android:layout_width="340dp"
+        android:layout_height="35dp"
+        android:id="@+id/editImageButton"
+        android:text="Zrób zdjęcie"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:background="@drawable/rounded_corners"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+
+    <Button
+        android:layout_width="340dp"
+        android:layout_height="35dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/editButton"
+        android:drawableLeft="@android:drawable/ic_menu_save"
+        android:text="Zapisz zmiany"
+
+        />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

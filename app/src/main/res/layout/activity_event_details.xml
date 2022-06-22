@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".EventDetailsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/AddingUserLogin"
+                android:layout_width="407dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="36dp"
+                android:paddingStart="16dp"
+                android:paddingTop="10dp"
+                android:text="AddingUserLogin" />
+
+            <TextView
+                android:id="@+id/eventLocality"
+                android:layout_width="403dp"
+                android:layout_height="59dp"
+                android:paddingStart="16dp"
+                android:text="Locality" />
+
+            <TextView
+                android:id="@+id/eventName"
+                android:layout_width="410dp"
+                android:layout_height="65dp"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:text="Event name" />
+
+            <ImageView
+                android:id="@+id/imageDetails"
+                android:layout_width="379dp"
+                android:layout_height="274dp"
+                android:layout_marginStart="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_image" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/editButton1"
+                    android:layout_width="360dp"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="Edycja"
+                    app:icon="@drawable/ic_edit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.509"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/deleteButton1"
+                    android:layout_width="360dp"
+                    android:layout_height="36dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="Usuń lok."
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editButton1"
+                    app:icon="@android:drawable/ic_delete" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
