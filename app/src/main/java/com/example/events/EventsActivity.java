@@ -167,26 +167,7 @@ public class EventsActivity extends AppCompatActivity {
                         ListAdapter adapter  = new ListAdapter(getApplicationContext(), R.layout.custom_adapter, orderedByDateList);
                         listView.setAdapter(adapter);
 
-//                        //Referencja do bazy plików (zdjęć) FirebaseStorage
-//                        gsReference = FirebaseStorage.getInstance().getReference().child(id);
-//                        gsReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                            @Override
-//                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                                bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-//
-//
-//
-//
-//
-//
-//                            }
-//
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                System.out.println("Nie znaleziono zdjęcia lub wystąpił błąd");
-//                            }
-//                        });
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

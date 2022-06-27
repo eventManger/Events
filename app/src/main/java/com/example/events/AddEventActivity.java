@@ -141,7 +141,8 @@ public class AddEventActivity extends AppCompatActivity {
                             storage = FirebaseStorage.getInstance();
                             StorageReference storageRef = storage.getReference();
                             StorageReference mountainsRef = storageRef.child(id);
-                            // Create a reference to 'images/mountains.jpg'
+
+                            // Create a reference to 'images/*.jpg' - pełny plik, nie miniaturka
                             StorageReference mountainImagesRef = storageRef.child(image_uri.getPath());
 
                             // While the file names are the same, the references point to different files
@@ -150,6 +151,7 @@ public class AddEventActivity extends AppCompatActivity {
 
                             mountainsRef.putFile(image_uri);
 
+                            //Zdjęcie zamienione na String i zapisane w danych eventu
                             String imageString = BitMapToString(bitmap);
 
 
