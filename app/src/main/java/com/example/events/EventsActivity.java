@@ -204,7 +204,7 @@ public class EventsActivity extends AppCompatActivity {
                         intent.putExtra("latitude", item.getLatitude());
                         intent.putExtra("longitude", item.getLongitude());
                         intent.putExtra("address", ""+item.getAddress());
-
+                        intent.putExtra("notes", ""+item.getNote());
                         startActivity(intent);
                     }
                 });

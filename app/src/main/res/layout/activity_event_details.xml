@@ -39,6 +39,14 @@
                 android:paddingTop="16dp"
                 android:text="Event name" />
 
+            <TextView
+                android:id="@+id/notki"
+                android:layout_width="410dp"
+                android:layout_height="65dp"
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:text="Notes" />
+
             <ImageView
                 android:id="@+id/imageDetails"
                 android:layout_width="298dp"

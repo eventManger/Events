@@ -161,10 +161,11 @@ public class EventEditActivity extends AppCompatActivity {
 
                                 imageView.setImageBitmap(event.getImage());
 
-//                                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//                                BitmapFactory.decodeFile(localFile.getAbsolutePath()).compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-//                                String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), BitmapFactory.decodeFile(localFile.getAbsolutePath()), "Title", null);
-//                                image_uri = Uri.parse(path);
+                                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                                event.getImage().compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                                String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), event.getImage(), "Title", null);
+                                image_uri = Uri.parse(path);
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -220,22 +221,11 @@ public class EventEditActivity extends AppCompatActivity {
 
                             //Aktualizacja wpisu o nazwie takiej jak ID zdarzenia
                             StorageReference objectReference = imageDatabase.child(id);
-                            StorageReference mountainImagesRef = imageDatabase.child(image_uri.getPath());
+                           // StorageReference mountainImagesRef = imageDatabase.child(image_uri.getPath());
 
                             //Umieszcza plik w bazie plików
                             objectReference.putFile(image_uri);
 
-                            //Kompresja pliku
-//                            Bitmap bitmap = null;
-//                            String compressedImageString = "";
-//                            try {
-//                                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), image_uri);
-//                                ByteArrayOutputStream baos = new ByteArrayOutputStream(8192);
-//                                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-//                                compressedImageString = new ByteArrayOutputStream(8192).toByteArray().toString();
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
                             Bitmap bitmap = null;
                             try {
                                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), image_uri);

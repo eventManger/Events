@@ -147,7 +147,7 @@ public class LoginPageActivity extends AppCompatActivity {
                 task.getResult(ApiException.class);
                 HomeActivity();
             } catch (ApiException e) {
-                Toast.makeText(this, "Konto nie jest zarejestrowane. Użyj formularza rejestracyjnego.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Nie masz dostępu do internetu lub Konto nie jest zarejestrowane. Użyj formularza rejestracyjnego.", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }

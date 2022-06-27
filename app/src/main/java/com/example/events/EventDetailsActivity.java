@@ -42,6 +42,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
 
     String address;
+    String notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         String name = intent.getStringExtra("eventName");
         String addingUserLogin = intent.getStringExtra("addingUserLogin");
         address = intent.getStringExtra("address");
+        notes = intent.getStringExtra("notes");
+
 
         editButton = findViewById(R.id.editButton1);
         deleteButton = findViewById(R.id.deleteButton1);
@@ -76,8 +79,6 @@ public class EventDetailsActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(getApplicationContext(), "Możesz edytować tylko swoje wpisy!", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
 
@@ -133,6 +134,11 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         //Login dodającego
         nameView.setText(Html.fromHtml("<font color='#6200EE'><b>Nazwa zdarzenia:</b><br></font>" + name));
+
+        notesView = findViewById(R.id.notki);
+        notesView.setText(Html.fromHtml("<font color='#6200EE'><b>Notki:</b><br></font>" + notes));
+
+
 
         //Lokalizacja
         localityView.setText(Html.fromHtml("<font color='#6200EE'><b>Lokalizacja:</b><br></font>" + address));
