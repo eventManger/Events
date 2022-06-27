@@ -67,9 +67,9 @@ import java.util.Random;
 
 public class EventEditActivity extends AppCompatActivity {
 
-    private static final String TAG = "dfw4";
-    private static final String PREF_USER_NAME = "unlogged";
-    private static final String PREF_ID = "unlogged";
+//    private static final String TAG = "dfw4";
+//    private static final String PREF_USER_NAME = "unlogged";
+//    private static final String PREF_ID = "unlogged";
     Button btLocation;
     TextView addressView, countryView, localityView ;
     TextInputEditText nameView, notesView;
@@ -90,7 +90,7 @@ public class EventEditActivity extends AppCompatActivity {
     FirebaseStorage storage;
     Event event;
 
-    FirebaseFirestore db;
+    //FirebaseFirestore db;
 
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
@@ -305,7 +305,7 @@ public class EventEditActivity extends AppCompatActivity {
                             }
                         }
                         else{
-                            System.out.println("Location is null");
+                            Toast.makeText(getApplicationContext(), "Nie znaleziono ostatniej lokalizacji.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -413,7 +413,7 @@ public class EventEditActivity extends AppCompatActivity {
 
     public String BitMapToString(Bitmap bitmap){
         ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        bitmap.compress(Bitmap.CompressFormat.PNG,2, baos);
         byte [] b=baos.toByteArray();
         String temp= Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
